@@ -43,10 +43,12 @@ dados_2$pais <- as.factor(dados_2$pais)
 # Gráfico ----------------------------------------------------------------------------------------------------------------------------------
 
 ggplot(dados_2) +
-  geom_col(aes(x = pais, y = media, fill = pais)) +
+  geom_col(aes(x = fct_reorder(pais, media), y = media, fill = pais)) +
   geom_errorbar(aes(x = pais, y = media, 
                     ymax = media + se, ymin = media - se),
                     width = 0.15, size = 1.5, color = "brown") +
-  labs(y = "Número médio de casos", x = "Países", 
+  labs(y = "Número médio de casos", x = "Países", fill = "Países",
        title = "Casos de tuberculose em homens de 15 a 24 anos") +
-  theme(legend.position = "none")
+  theme_minimal(base_size = 14) +
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank())
