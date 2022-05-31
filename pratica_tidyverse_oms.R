@@ -36,3 +36,17 @@ dados_2 <- dados_1 %>%
             sd = sd(novos_fpp_h1524),
             n = n(), se = sd/sqrt(n))
 dados_2
+
+glimpse(dados_2)
+dados_2$pais <- as.factor(dados_2$pais)
+
+# Gráfico ----------------------------------------------------------------------------------------------------------------------------------
+
+ggplot(dados_2) +
+  geom_col(aes(x = pais, y = media, fill = pais)) +
+  geom_errorbar(aes(x = pais, y = media, 
+                    ymax = media + se, ymin = media - se),
+                    width = 0.15, size = 1.5, color = "brown") +
+  labs(y = "Número médio de casos", x = "Países", 
+       title = "Casos de tuberculose em homens de 15 a 24 anos") +
+  theme(legend.position = "none")
