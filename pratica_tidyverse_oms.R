@@ -8,6 +8,11 @@
 library(tidyverse)
 library(dados)
 
+# Sobre os dados ---------------------------------------------------------------------------------------------------------------------------
+
+### Subconjunto de dados do relatório anual de tuberculose da Organização Mundial 
+### da Saúde.
+
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
 dados <- dados::dados_oms
@@ -15,4 +20,9 @@ view(dados)
 
 # Selecionando dados -----------------------------------------------------------------------------------------------------------------------
 
-
+dados_1 <- dados %>%
+  select(pais, ano, novos_fpp_h1524) %>%
+  filter(pais %in% c("Guatemala", "Haiti", 
+                     "Hungria", "Estados Unidos")) %>%
+  view()
+dados_1
