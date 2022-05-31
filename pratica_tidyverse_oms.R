@@ -26,3 +26,13 @@ dados_1 <- dados %>%
                      "Hungria", "Estados Unidos")) %>%
   view()
 dados_1
+
+# Resumindo os dados -----------------------------------------------------------------------------------------------------------------------
+
+dados_2 <- dados_1 %>%
+  group_by(pais) %>%
+  drop_na() %>%
+  summarise(media = mean(novos_fpp_h1524),
+            sd = sd(novos_fpp_h1524),
+            n = n(), se = sd/sqrt(n))
+dados_2
